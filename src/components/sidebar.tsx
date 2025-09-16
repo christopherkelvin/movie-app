@@ -3,12 +3,15 @@
 import { newsFeedItems } from "@/config/newsFeedItems";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import { IoIosArrowBack } from "react-icons/io";
 export const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="w-64 h-full text-white p-4 border-r-2 border-white/10 flex flex-col gap-8 relative text-md">
+    <div className="w-full relative text-white p-4 border-r-2 border-white/10 flex flex-col gap-8 text-md ">
+      <div className="absolute -right-14 border-2 border-white/10 rounded-lg p-2 cursor-pointer hover:bg-white/10 transition">
+        <IoIosArrowBack size={25} />
+      </div>
       {/* App Logo */}
       <div className="flex items-center gap-4">
         <div className="bg-[var(--highlight)] h-10 w-10 rounded-full flex items-center justify-center font-bold">

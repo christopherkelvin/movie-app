@@ -1,0 +1,25 @@
+"use client";
+import { CiSearch } from "react-icons/ci";
+import { CiBellOn } from "react-icons/ci";
+import UserImage from "../../public/userImage.jpg"
+export const Topbar = () => {
+    return (
+      <div className="h-20 w-full border-b-2 border-white/10 flex items-center justify-end text-white font-bold gap-6 pr-4">
+        <div className="relative flex">
+          <input
+            type="text"
+            placeholder="Search everything"
+            className="peer border-white/10 border-2 rounded-2xl py-2 pl-10 focus:outline-none"
+          />
+          <CiSearch
+            className="absolute top-2 left-3 text-white peer-focus:hidden"
+            size={25}
+          />
+        </div>
+        <CiBellOn className="ml-6" size={25} />
+        <div>
+          <img src={UserImage.src} alt=""  className="h-10 w-10 rounded-full"/>
+        </div>
+      </div>
+    );
+}
