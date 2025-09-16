@@ -1,10 +1,9 @@
-import { Topbar } from "@/components/topbar";
-import Image from "next/image";
+
 
 export default function Home() {
   return (
     <div className="">
-      <Topbar/>
+      Landing Page
     </div>
   );
 }
