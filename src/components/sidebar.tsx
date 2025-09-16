@@ -52,19 +52,25 @@ export const Sidebar = () => {
             <Link
               key={item.path}
               href={item.path}
-              className={`px-4 py-3 rounded-3xl transition flex gap-4 items-center ${
+              className={`${
+                isOpen ? "px-4 py-3" : " h-10 w-10 justify-center"
+              } rounded-3xl transition flex gap-4 items-center ${
                 isActive
                   ? "bg-[var(--highlight)] text-white"
                   : "text-[var(--unhighlight)] hover:text-white hover:bg-white/10"
               }`}
             >
-              <item.icon
-                size={30}
-                color={isActive ? "white" : "var(--unhighlight)"}
-                className={`hover:text-white ${
-                  !isActive || isOpen && " border-2 rounded-full"
-                }`}
-              />
+              {isOpen ? (
+                <item.icon
+                  size={30}
+                  color={isActive ? "var(--highlight)" : "var(--unhighlight)"}
+                  className={`hover:text-white ${
+                    !isActive || (isOpen && " rounded-full bg-white p-1")
+                  }`}
+                />
+              ) : (
+                <item.icon size={25} />
+              )}
               {isOpen && (
                 <div className="text-center pt-0.5 font-bold">{item.label}</div>
               )}
