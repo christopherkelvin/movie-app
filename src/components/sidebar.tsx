@@ -4,12 +4,10 @@ import { newsFeedItems } from "@/config/newsFeedItems";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useState } from "react";
 
-export const Sidebar = () => {
+
+export const Sidebar = ({ isOpen, setIsOpen }:any ) => {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(true);
-
   return (
     <div
       className={`relative text-white p-4 border-r-2 border-white/10 flex flex-col gap-8 text-md transition-all duration-300 ${
