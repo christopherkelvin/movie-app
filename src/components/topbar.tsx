@@ -16,9 +16,13 @@ export const Topbar = () => {
             size={25}
           />
         </div>
-        <CiBellOn className="ml-6" size={25} />
+        <CiBellOn className="ml-6 max-sm:hidden" size={25} />
         <div>
-          <img src={UserImage.src} alt=""  className="h-10 w-10 rounded-full"/>
+          <img
+            src={UserImage.src}
+            alt=""
+            className="h-10 w-10 rounded-full max-sm:hidden"
+          />
         </div>
       </div>
     );

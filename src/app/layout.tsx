@@ -28,7 +28,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${
           geistMono.variable
         } font-sans text-white grid ${
-          isOpen ? "grid-cols-[254px_1fr]" : "grid-cols-[80px_1fr]"
+          isOpen
+            ? "grid-cols-[254px_1fr]"
+            : "grid-cols-[80px_1fr] max-sm:grid-cols-[56px_1fr]"
         }  h-screen bg-[var(--background)]`}
       >
         <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
