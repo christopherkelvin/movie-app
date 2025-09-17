@@ -10,10 +10,10 @@ export const Topbar = () => {
   const router = useRouter();
 
   useEffect(() => {
+    if (query.trim() === "") return; 
     const handler = setTimeout(() => {
       router.push(`/movies?query=${encodeURIComponent(query.trim())}`);
-    }, 400); // 400ms debounce
-
+    }, 400);
     return () => clearTimeout(handler);
   }, [query, router]);
 

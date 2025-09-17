@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useMovieSearch } from "@/hooks/useMovieSearch";
@@ -7,7 +7,18 @@ import { MovieCard } from "@/components/movieCard";
 import { MovieFilters } from "@/types/movieFilters";
 import { GENRES } from "@/config/genres";
 import { Ratings } from "@/constants/ratings";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectGroup,
+  SelectLabel,
+} from "@/components/ui/select";
+
 const YEARS = Array.from({ length: 30 }, (_, i) => `${2025 - i}`);
+
 export default function Movie() {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("query") || "";
@@ -16,69 +27,86 @@ export default function Movie() {
 
   const { movies, isLoading, error } = useMovieSearch(searchQuery, filters);
 
-  const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilters((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
   return (
     <div>
       <div className="flex gap-4 mb-6">
-        <label htmlFor="genre-select" className="sr-only">
-          Genre
-        </label>
-        <select
-          id="genre-select"
-          name="genre"
-          value={filters.genre || ""}
-          onChange={handleFilterChange}
-          className="border rounded px-2 py-1"
-          aria-label="Genre"
+        {/* Genre Filter */}
+        <Select
+          value={filters.genre || "all"}
+          onValueChange={(val) =>
+            setFilters((prev) => ({
+              ...prev,
+              genre: val === "all" ? undefined : val,
+            }))
+          }
         >
-          {GENRES.map((g) => (
-            <option key={g.id} value={g.id}>
-              {g.name}
-            </option>
-          ))}
-        </select>
-        <label htmlFor="year-select" className="sr-only">
-          Year
-        </label>
-        <select
-          id="year-select"
-          name="year"
-          value={filters.year || ""}
-          onChange={handleFilterChange}
-          className="border rounded px-2 py-1"
-          aria-label="Year"
+          <SelectTrigger className="border rounded px-2 py-1 w-[180px]">
+            <SelectValue placeholder="All Genres" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Genres</SelectLabel>
+              <SelectItem value="all">All Genres</SelectItem>
+              {GENRES.map((genre, i) => (
+                <SelectItem key={i} value={genre.id}>
+                  {genre.name}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Select
+          value={filters.year || "all"}
+          onValueChange={(val) =>
+            setFilters((prev) => ({
+              ...prev,
+              year: val === "all" ? undefined : val,
+            }))
+          }
         >
-          <option value="">All Years</option>
-          {YEARS.map((y) => (
-            <option key={y} value={y}>
-              {y}
-            </option>
-          ))}
-        </select>
-        <label htmlFor="rating-select" className="sr-only">
-          Rating
-        </label>
-        <select
-          id="rating-select"
-          name="rating"
-          value={filters.rating || ""}
-          onChange={handleFilterChange}
-          className="border rounded px-2 py-1"
-          aria-label="Rating"
+          <SelectTrigger className="border rounded px-2 py-1 w-[140px]">
+            <SelectValue placeholder="All Years" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Year</SelectLabel>
+              <SelectItem value="all">All Years</SelectItem>
+              {YEARS.map((y) => (
+                <SelectItem key={y} value={y}>
+                  {y}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Select
+          value={filters.rating || "all"}
+          onValueChange={(val) =>
+            setFilters((prev) => ({
+              ...prev,
+              rating: val === "all" ? undefined : val,
+            }))
+          }
         >
-          {Ratings.map((r) => (
-            <option key={r.value} value={r.value}>
-              {r.label}
-            </option>
-          ))}
-        </select>
+          <SelectTrigger className="border rounded px-2 py-1 w-[140px]">
+            <SelectValue placeholder="All Ratings" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Rating</SelectLabel>
+              <SelectItem value="all">All Ratings</SelectItem>
+              {Ratings.map((rate, i) => (
+                <SelectItem key={i} value={rate.label}>
+                  {rate.label}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </div>
+
       {isLoading ? (
         <div>Loading... </div>
       ) : error ? (
