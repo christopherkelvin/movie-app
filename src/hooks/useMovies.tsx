@@ -13,7 +13,6 @@ export const useMovies = (filter:string) => {
      return json.results;
    },
  });
- console.log(data);
  return {
    movies: data || [],
    isLoading,

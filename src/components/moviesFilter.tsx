@@ -3,13 +3,7 @@ import { useMovies } from "@/hooks/useMovies";
 import { FaAngleDown } from "react-icons/fa6";
 import { MovieCard } from "@/components/movieCard";
 import { LoadingSpinner } from "./loadingSpinner";
-
-const filterOptions = [
-  { label: "Popular", value: "popular" },
-  { label: "Top Rated", value: "top_rated" },
-  { label: "Upcoming", value: "upcoming" },
-  { label: "Now Playing", value: "now_playing" },
-];
+import { filterOptions } from "@/constants/filterOptions";
 
 export const MoviesFilter = () => {
   const [filter, setFilter] = useState("popular");
