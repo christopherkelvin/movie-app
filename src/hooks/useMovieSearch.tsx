@@ -1,7 +1,7 @@
 import { Movie } from "@/types/movie";
 import { MovieFilters } from "@/types/movieFilters";
 import { useQuery } from "@tanstack/react-query";
-export const useMovieSearch = async (query: string, filters: MovieFilters) => {
+export const useMovieSearch = (query: string, filters: MovieFilters) => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 

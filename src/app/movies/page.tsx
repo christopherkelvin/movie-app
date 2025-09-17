@@ -16,6 +16,8 @@ import {
   SelectGroup,
   SelectLabel,
 } from "@/components/ui/select";
+import { LoadingSpinner } from "@/components/loadingSpinner";
+import { Error } from "@/components/error"; 
 
 const YEARS = Array.from({ length: 30 }, (_, i) => `${2025 - i}`);
 
@@ -108,9 +110,11 @@ export default function Movie() {
       </div>
 
       {isLoading ? (
-        <div>Loading... </div>
+        <LoadingSpinner />
       ) : error ? (
-        <div>Error...</div>
+        <div>
+          <Error error={error} />
+        </div>
       ) : (
         <div>
           {searchQuery ? (

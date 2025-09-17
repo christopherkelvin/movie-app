@@ -17,8 +17,8 @@ import {
 export const MoviesFilter = () => {
   const [filter, setFilter] = useState("popular");
   const [isOpen, setIsOpen] = useState(false);
+  const {movies, isLoading} = useMovies(filter);
 
-  const { movies, isLoading } = useMovies(filter);
   return (
     <div className="text-white p-10 max-sm:py-4 flex flex-col gap-4 relative">
       <div className="flex justify-end">

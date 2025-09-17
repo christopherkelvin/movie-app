@@ -5,13 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { CiBellOn } from "react-icons/ci";
-import UserImage from "../../public/userImage.jpg"
+import UserImage from "../../public/userImage.jpg";
 
-export const Sidebar = ({ isOpen, setIsOpen }:any ) => {
+export const Sidebar = ({ isOpen, setIsOpen }: any) => {
   const pathname = usePathname();
   return (
     <div
-      className={`relative text-white p-4 border-r-2 border-white/10 flex flex-col gap-8 text-md transition-all duration-300 ${
+      className={`fixed h-dvh text-white p-4 border-r-2 border-white/10 flex flex-col gap-8 text-md transition-all duration-300 z-10 ${
         isOpen ? "w-64" : "w-20 max-sm:w-14 max-sm:px-1 py-10"
       }`}
     >

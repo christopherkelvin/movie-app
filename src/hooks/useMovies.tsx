@@ -1,5 +1,5 @@
 import {useQuery} from '@tanstack/react-query';
-export  const useMovies = async (filter: string) => {
+export  const useMovies = (filter: string) => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const { data, isLoading, error } = useQuery({
