@@ -4,13 +4,21 @@ import { CiBellOn } from "react-icons/ci";
 import UserImage from "../../public/userImage.jpg";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import {
+  SignInButton,
+  SignOutButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 
 export const Topbar = () => {
   const [query, setQuery] = useState("");
   const router = useRouter();
 
   useEffect(() => {
-    if (query.trim() === "") return; 
+    if (query.trim() === "") return;
     const handler = setTimeout(() => {
       router.push(`/movies?query=${encodeURIComponent(query.trim())}`);
     }, 400);
@@ -33,13 +41,20 @@ export const Topbar = () => {
         />
       </div>
       <CiBellOn className="ml-6 max-sm:hidden" size={25} />
-      <div>
-        <img
-          src={UserImage.src}
-          alt=""
-          className="h-10 w-10 rounded-full max-sm:hidden"
-        />
-      </div>
+      <SignedOut>
+        <SignInButton />
+        <SignUpButton>
+          <button className="bg-[#6c47ff] text-ceramic-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
+            Sign Up
+          </button>
+        </SignUpButton>
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+        <div className="bg-[var(--highlight)] rounded-full p-2 cursor-pointer ">
+          <SignOutButton />
+        </div>
+      </SignedIn>
     </div>
   );
 };
