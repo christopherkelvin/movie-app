@@ -5,6 +5,7 @@ import "./globals.css";
 import { Sidebar } from "@/components/sidebar";
 import { Topbar } from "@/components/topbar";
 import { useToggle } from "@/hooks/useToggle";
+import Providers from "./providers";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -36,7 +37,7 @@ export default function RootLayout({
         <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
         <div className="flex flex-col">
           <Topbar />
-          {children}
+          <Providers>{children}</Providers>
         </div>
       </body>
     </html>

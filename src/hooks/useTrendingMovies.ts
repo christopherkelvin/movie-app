@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export const useTrendingMovies = () => {
   const api_key = process.env.NEXT_PUBLIC_API_KEY;
   const base_url = process.env.NEXT_PUBLIC_BASE_URL;
-  const url = `${base_url}movie/day?api_key=${api_key}`;
+  const url = `${base_url}trending/movie/day?api_key=${api_key}`;
 
   const [isLoading, setIsLoading] = useState(true);
   const [movies, setMovies] = useState<any[]>([]);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { IoIosTrendingUp } from "react-icons/io";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-
+import { Error as ErrorComponent } from "@/components/error";
 import { useTrendingMovies } from "@/hooks/useTrendingMovies";
 import { LoadingSpinner } from "@/components/loadingSpinner";
 import ratingLogo from "../../public/RatingLogo.webp";
@@ -10,7 +10,7 @@ export const Trending = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const baseUrl = "https://image.tmdb.org/t/p/original";
-  const { movies, isLoading } = useTrendingMovies();
+  const { movies, isLoading, error } = useTrendingMovies();
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev === 0 ? movies.length - 1 : prev - 1));
@@ -19,17 +19,20 @@ export const Trending = () => {
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev === movies.length - 1 ? 0 : prev + 1));
   };
-// created an interval to change slide every 10 seconds
+
+  // ⏱️ Auto-slide
   useEffect(() => {
+    if (movies.length === 0) return;
     const interval = setInterval(() => {
       nextSlide();
     }, 10000);
     return () => clearInterval(interval);
   }, [movies]);
 
+
+
   const currentMovie = movies[currentIndex];
 
-  // pick 4 movies starting at currentIndex
   const thumbnails = [
     ...movies.slice(currentIndex, currentIndex + 4),
     ...movies.slice(0, Math.max(0, currentIndex + 4 - movies.length)),
@@ -39,6 +42,12 @@ export const Trending = () => {
     <div>
       {isLoading ? (
         <LoadingSpinner />
+      ) : error ? (
+        <ErrorComponent error={error} />
+      ) : movies.length === 0 ? (
+        <div className="text-gray-400 p-6 text-center">
+          No trending movies available right now.
+        </div>
       ) : (
         <div className="w-full relative overflow-hidden">
           <div className="relative h-[400px] w-full max-sm:h-auto">
