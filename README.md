@@ -1,57 +1,36 @@
-Movie App 🎬
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-A modern movie browsing app that lets users search, filter, and save movies while providing personalized recommendations and stats.
+## Getting Started
 
-Key Features
+First, run the development server:
 
-Browse movies with posters, titles, release dates, genres, and ratings.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-Search by title or keyword; filter by genre, year, and rating.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Sort movies by popularity, release date, or rating.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Add movies to a personal watchlist.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-Personalized recommendations based on browsing and watchlist activity.
+## Learn More
 
-Visualize movie stats with charts.
+To learn more about Next.js, take a look at the following resources:
 
-Responsive design for desktop and mobile.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-User authentication with login/logout.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-Project Structure
-/components  - Reusable UI components
-/hooks       - Custom React hooks
-/pages       - Next.js pages
-/store       - Zustand state management
-/utils       - Helper functions
-/styles      - Tailwind CSS styles
-/public      - Static assets
-/types       - TypeScript types
+## Deploy on Vercel
 
-Known Issues
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Recommendations are basic and may not always be accurate.
-
-Some movie metadata may be missing due to API limitations.
-
-Watchlist and filters are stored locally; not synced across devices.
-
-Minor layout issues on very small mobile screens.
-
-External Libraries & Tools
-
-React / Next.js, TypeScript
-
-Zustand (state management)
-
-React Query (data fetching)
-
-Tailwind CSS
-
-Clerk (authentication)
-
-Chart.js / Recharts (visualizations)
-
-TMDB API (movie data)
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
