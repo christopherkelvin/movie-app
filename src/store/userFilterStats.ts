@@ -1,11 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-type Filter = {
-  type: string;
-  value: string;
-  count: number;
-};
 
 type FilterStatsState = {
   filters: Filter[];

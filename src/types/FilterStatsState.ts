@@ -3,3 +3,9 @@ type FilterStatsState = {
   trackFilter: (type: string, value: string) => void;
   resetFilters: () => void;
 };
+
+type Filter = {
+  type: string;
+  value: string;
+  count: number;
+};
