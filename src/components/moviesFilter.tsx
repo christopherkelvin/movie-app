@@ -50,7 +50,7 @@ export const MoviesFilter = () => {
           </Select>
         </div>
       </div>
-      <div className="pt-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div className="pt-5 px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {isLoading ? (
           <div className="col-span-full text-center">
             <LoadingSpinner />

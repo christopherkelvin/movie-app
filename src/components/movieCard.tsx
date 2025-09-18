@@ -1,23 +1,36 @@
 // src/components/MovieCard.tsx
 import { genreMap } from "@/constants/genreMap";
-
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Car } from "lucide-react";
 const baseUrl = "https://image.tmdb.org/t/p/w500";
 
 export const MovieCard = ({ movie }: { movie: any }) => {
   return (
-    <div className="relative bg-[var(--unhighlight)] rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
-      <img
-        src={`${baseUrl}${movie.poster_path}`}
-        className="w-full h-72 object-cover"
-        alt={movie.title}
-      />
+    <Card className="relative hover:scale-[1.02] transition-transform cursor-pointer overflow-hidden bg-transparent">
+      <CardContent>
+        <img
+          src={`${baseUrl}${movie.poster_path}`}
+          className="absolute top-0 left-0 w-full h-80 object-cover rounded-lg"
+          alt={movie.title}
+        />
+      </CardContent>
 
-      <div className="p-4 flex flex-col gap-2">
-        <div className="uppercase font-bold text-md truncate">
-          {movie.title}
-        </div>
+      <div className="p-4 flex flex-col gap-2 mt-70">
+        <CardHeader className="">
+          <CardTitle className="text-muted-foreground text-center uppercase">
+            {movie.title}
+          </CardTitle>
+        </CardHeader>
 
-        <div className="flex justify-between items-center text-sm text-gray-300">
+        <CardFooter className="flex justify-between text-xs text-gray-300">
           <span>⭐ {movie.vote_average.toFixed(1)}</span>
           <span>
             {movie.release_date
@@ -28,7 +41,7 @@ export const MovieCard = ({ movie }: { movie: any }) => {
                 })
               : "TBA"}
           </span>
-        </div>
+        </CardFooter>
 
         <div className="flex flex-wrap gap-2 text-xs">
           {movie.genre_ids.slice(0, 3).map((id: number) => (
@@ -41,10 +54,10 @@ export const MovieCard = ({ movie }: { movie: any }) => {
           ))}
         </div>
 
-        <p className="text-xs text-gray-400 line-clamp-3">
+        <CardDescription className="line-clamp-3 text-sm ">
           {movie.overview || "No description available."}
-        </p>
+        </CardDescription>
       </div>
-    </div>
+    </Card>
   );
 };

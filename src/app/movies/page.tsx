@@ -100,7 +100,7 @@ export default function Movie() {
               <SelectLabel>Rating</SelectLabel>
               <SelectItem value="all">All Ratings</SelectItem>
               {Ratings.map((rate, i) => (
-                <SelectItem key={i} value={rate.label}>
+                <SelectItem key={i} value={rate.value}>
                   {rate.label}
                 </SelectItem>
               ))}
@@ -117,12 +117,10 @@ export default function Movie() {
         </div>
       ) : (
         <div>
-          {searchQuery ? (
+          {searchQuery && (
             <h2>Search results for "{searchQuery}"</h2>
-          ) : (
-            <div>Recent Movies</div>
-          )}
-          <div className="pt-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          ) }
+          <div className="pt-5 px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {movies.map((movie: MovieType) => (
               <MovieCard key={movie.id} movie={movie} />
             ))}
