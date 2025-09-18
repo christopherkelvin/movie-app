@@ -9,13 +9,29 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { FaStar } from "react-icons/fa";
+import { useWatchlistStore } from "@/store/watchlist";
 const baseUrl = "https://image.tmdb.org/t/p/w500";
 
 export const MovieCard = ({ movie }: { movie: any }) => {
+    const { addToWatchlist, removeFromWatchlist, isInWatchlist } =
+      useWatchlistStore();
+      const inWatchlist = isInWatchlist(movie.id);
+      const handleClick=()=>{
+         if (inWatchlist) {
+           removeFromWatchlist(movie.id);
+         } else {
+           addToWatchlist(movie);
+         }
+      }
   return (
     <Card className="relative hover:scale-[1.02] transition-transform cursor-pointer overflow-hidden bg-transparent">
       <FaStar
-        className="absolute z-10  top-2 right-4 text-gray-400 rounded-full hover:text-yellow-400"
+        className={`absolute z-10  top-2 right-4  rounded-full ${
+          inWatchlist
+            ? "text-yellow-400 hover:text-yellow-400"
+            : "text-gray-400 hover:text-yellow-400"
+        }`}
+        onClick={handleClick}
         size={40}
       />
       <CardContent>
