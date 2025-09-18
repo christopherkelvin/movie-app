@@ -2,19 +2,22 @@
 import { genreMap } from "@/constants/genreMap";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Car } from "lucide-react";
+import { FaStar } from "react-icons/fa";
 const baseUrl = "https://image.tmdb.org/t/p/w500";
 
 export const MovieCard = ({ movie }: { movie: any }) => {
   return (
     <Card className="relative hover:scale-[1.02] transition-transform cursor-pointer overflow-hidden bg-transparent">
+      <FaStar
+        className="absolute z-10  top-2 right-4 text-gray-400 rounded-full hover:text-yellow-400"
+        size={40}
+      />
       <CardContent>
         <img
           src={`${baseUrl}${movie.poster_path}`}
