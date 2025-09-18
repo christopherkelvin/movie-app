@@ -10,7 +10,7 @@ return (
       {watchlist.length === 0 ? (
         <p>No movies in watchlist yet.</p>
       ) : (
-        <div className="flex space-x-4 w-[700px] overflow-x-auto overflow-y-hidden scroll-smooth">
+        <div className="space-x-4 grid grid-cols-3 md:grid-cols-6 lg:grid-cols-7 overflow-x-auto overflow-y-hidden scroll-smooth">
           {watchlist.map((movie) => (
             <img src={baseUrl + movie.poster_path} className="h-60" alt="" />
           ))}

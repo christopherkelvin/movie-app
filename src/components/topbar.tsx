@@ -30,8 +30,8 @@ export const Topbar = () => {
       <div className="relative flex">
         <input
           type="text"
-          placeholder="Search everything"
-          className="peer border-white/10 border-2 rounded-2xl py-2 pl-10 focus:outline-none"
+          placeholder="Search ..."
+          className="peer border-white/10 border-2 rounded-2xl py-2 pl-10 focus:outline-none max-sm:w-40"
           onChange={(e) => setQuery(e.target.value)}
           value={query}
         />
@@ -50,7 +50,9 @@ export const Topbar = () => {
         </SignUpButton>
       </SignedOut>
       <SignedIn>
-        <UserButton />
+        <div className="max-sm:hidden">
+          <UserButton />
+        </div>
         <div className="bg-[var(--highlight)] rounded-full p-2 cursor-pointer ">
           <SignOutButton />
         </div>

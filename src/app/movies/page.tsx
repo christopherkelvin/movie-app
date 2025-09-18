@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/select";
 import { LoadingSpinner } from "@/components/loadingSpinner";
 import { Error } from "@/components/error"; 
-
+import { useFilterStats } from "@/store/userFilterStats";
 const YEARS = Array.from({ length: 30 }, (_, i) => `${2025 - i}`);
 
 export default function Movie() {
@@ -28,18 +28,21 @@ export default function Movie() {
   const [filters, setFilters] = useState<MovieFilters>({});
 
   const { movies, isLoading, error } = useMovieSearch(searchQuery, filters);
+  const trackFilter = useFilterStats((state)=>state.trackFilter)
 
   return (
     <div>
       <div className="flex gap-4 mb-6">
-        {/* Genre Filter */}
         <Select
           value={filters.genre || "all"}
           onValueChange={(val) =>
+          {
+            trackFilter("genre", val);
             setFilters((prev) => ({
               ...prev,
               genre: val === "all" ? undefined : val,
-            }))
+            }));
+          }
           }
         >
           <SelectTrigger className="border rounded px-2 py-1 w-[180px]">
