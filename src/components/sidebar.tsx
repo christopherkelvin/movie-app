@@ -15,7 +15,6 @@ export const Sidebar = ({ isOpen, setIsOpen }: any) => {
         isOpen ? "w-64" : "w-20 max-sm:w-14 max-sm:px-1 py-10"
       }`}
     >
-      {/* Toggle side bar */}
       <div
         className="absolute -right-20 top-4 border-2 border-white/10 rounded-lg p-2 cursor-pointer hover:bg-white/10 transition max-sm:hidden"
         onClick={() => setIsOpen(!isOpen)}

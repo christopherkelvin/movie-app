@@ -6,7 +6,7 @@ export  const useMovies = (filter: string) => {
     queryKey: ["movies", filter],
     queryFn: async () => {
       const res = await fetch(
-        `${BASE_URL}movie/${filter}?api_key=${API_KEY}&language=en-US&page=1`
+        `${BASE_URL}movie/${filter}?api_key=${API_KEY}`
       );
       if (!res.ok) throw new Error("Failed to fetch movies");
       const json = await res.json();

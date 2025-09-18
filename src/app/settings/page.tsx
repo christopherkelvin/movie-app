@@ -10,11 +10,6 @@ export default function Settings() {
 
   const handleLogout = () => {
     const confirmed = window.confirm("Are you sure you want to log out?");
-    // if (confirmed) {
-    //   signOut().then(() => {
-    //     router.push("/"); // redirect to homepage or login page
-    //   });
-    // }
   };
 
   return (
@@ -23,13 +18,13 @@ export default function Settings() {
 
       {/* Watchlist Link */}
       <Link href="/watchlist">
-        <div className="bg-blue-600 hover:bg-blue-700">
+        <div className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg">
           Go to Watchlist
         </div>
       </Link>
 
       {/* Logout Button */}
-      <div onClick={handleLogout} className="bg-red-600 hover:bg-red-700">
+      <div onClick={handleLogout} className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg">
         Logout
       </div>
     </div>
