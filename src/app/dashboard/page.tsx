@@ -1,4 +1,5 @@
 "use client";
+
 import { LoadingSpinner } from "@/components/loadingSpinner";
 import { useRecommendations } from "@/hooks/useRecommendations";
 import { useMovies } from "@/hooks/useMovies";
@@ -6,7 +7,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { SectionCards } from "@/components/SectionCard";
 import { Recomendation } from "@/components/Recomendation";
-import { genreMap } from "@/constants/genreMap";
 import {
   Bar,
   BarChart,
@@ -15,8 +15,11 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-export default function Dashboard() {
 
+// prevent Next.js from prerendering this page at build
+export const dynamic = "force-dynamic";
+
+export default function Dashboard() {
   const { favoriteGenres } = useRecommendations();
 
   const {
@@ -29,13 +32,12 @@ export default function Dashboard() {
     "release_date"
   );
 
-const genreStats = (favoriteGenres ?? []).map((f) => ({
-  name: f?.value ?? "Unknown",
-  count: f?.count ?? 0,
-}));
+  const genreStats = (favoriteGenres ?? []).map((f) => ({
+    name: f?.value ?? "Unknown",
+    count: f?.count ?? 0,
+  }));
 
-
-  const sortedMovies = [...recentMovies].sort((a, b) =>
+  const sortedMovies = [...(recentMovies ?? [])].sort((a, b) =>
     sortBy === "release_date"
       ? new Date(b.release_date).getTime() - new Date(a.release_date).getTime()
       : b.popularity - a.popularity
@@ -69,6 +71,7 @@ const genreStats = (favoriteGenres ?? []).map((f) => ({
               </ResponsiveContainer>
             )}
           </div>
+
           <div className="mt-8">
             <h2 className="text-xl font-semibold mb-4">Latest Movies</h2>
 
@@ -90,6 +93,7 @@ const genreStats = (favoriteGenres ?? []).map((f) => ({
                 Sort by Popularity
               </button>
             </div>
+
             {recLoading && <LoadingSpinner />}
             {recError && <p className="text-red-500">Failed to load movies.</p>}
 
