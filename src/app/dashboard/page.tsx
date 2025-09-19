@@ -29,10 +29,11 @@ export default function Dashboard() {
     "release_date"
   );
 
-  const genreStats = favoriteGenres.map((f) => ({
-    name: f.value,
-    count: f.count,
-  }));
+const genreStats = (favoriteGenres ?? []).map((f) => ({
+  name: f?.value ?? "Unknown",
+  count: f?.count ?? 0,
+}));
+
 
   const sortedMovies = [...recentMovies].sort((a, b) =>
     sortBy === "release_date"
