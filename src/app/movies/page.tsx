@@ -1,5 +1,6 @@
-"use client"
-import React, { useState } from "react";
+"use client";
+
+import React, { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useMovieSearch } from "@/hooks/useMovieSearch";
 import { Movie as MovieType } from "@/types/movie";
@@ -17,33 +18,35 @@ import {
   SelectLabel,
 } from "@/components/ui/select";
 import { LoadingSpinner } from "@/components/loadingSpinner";
-import { Error } from "@/components/error"; 
+import { Error } from "@/components/error";
 import { useFilterStats } from "@/store/userFilterStats";
+
 const YEARS = Array.from({ length: 30 }, (_, i) => `${2025 - i}`);
 
-export default function Movie() {
+// 👇 Put your page content in its own component
+function MoviesContent() {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("query") || "";
 
   const [filters, setFilters] = useState<MovieFilters>({});
+  const trackFilter = useFilterStats((state) => state.trackFilter);
 
   const { movies, isLoading, error } = useMovieSearch(searchQuery, filters);
-  const trackFilter = useFilterStats((state)=>state.trackFilter)
 
   return (
     <div>
+      {/* Filters */}
       <div className="flex gap-4 mb-6">
+        {/* Genre filter */}
         <Select
           value={filters.genre || "all"}
-          onValueChange={(val) =>
-          {
+          onValueChange={(val) => {
             trackFilter("genre", val);
             setFilters((prev) => ({
               ...prev,
               genre: val === "all" ? undefined : val,
             }));
-          }
-          }
+          }}
         >
           <SelectTrigger className="border rounded px-2 py-1 w-[180px]">
             <SelectValue placeholder="All Genres" />
@@ -52,8 +55,8 @@ export default function Movie() {
             <SelectGroup>
               <SelectLabel>Genres</SelectLabel>
               <SelectItem value="all">All Genres</SelectItem>
-              {GENRES.map((genre, i) => (
-                <SelectItem key={i} value={genre.id}>
+              {GENRES.map((genre) => (
+                <SelectItem key={genre.id} value={genre.id}>
                   {genre.name}
                 </SelectItem>
               ))}
@@ -61,6 +64,7 @@ export default function Movie() {
           </SelectContent>
         </Select>
 
+        {/* Year filter */}
         <Select
           value={filters.year || "all"}
           onValueChange={(val) =>
@@ -86,6 +90,7 @@ export default function Movie() {
           </SelectContent>
         </Select>
 
+        {/* Rating filter */}
         <Select
           value={filters.rating || "all"}
           onValueChange={(val) =>
@@ -102,8 +107,8 @@ export default function Movie() {
             <SelectGroup>
               <SelectLabel>Rating</SelectLabel>
               <SelectItem value="all">All Ratings</SelectItem>
-              {Ratings.map((rate, i) => (
-                <SelectItem key={i} value={rate.value}>
+              {Ratings.map((rate) => (
+                <SelectItem key={rate.value} value={rate.value}>
                   {rate.label}
                 </SelectItem>
               ))}
@@ -112,17 +117,14 @@ export default function Movie() {
         </Select>
       </div>
 
+      {/* Movie results */}
       {isLoading ? (
         <LoadingSpinner />
       ) : error ? (
-        <div>
-          <Error error={error} />
-        </div>
+        <Error error={error} />
       ) : (
         <div>
-          {searchQuery && (
-            <h2>Search results for "{searchQuery}"</h2>
-          ) }
+          {searchQuery && <h2>Search results for "{searchQuery}"</h2>}
           <div className="pt-5 px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {movies.map((movie: MovieType) => (
               <MovieCard key={movie.id} movie={movie} />
@@ -131,5 +133,13 @@ export default function Movie() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function Movie() {
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <MoviesContent />
+    </Suspense>
   );
 }
