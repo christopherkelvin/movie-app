@@ -31,10 +31,10 @@ export default function Dashboard() {
     "release_date"
   );
 
-  const genreStats = (favoriteGenres ?? []).map((f) => ({
-    name: f?.value ?? "Unknown",
-    count: f?.count ?? 0,
-  }));
+  // const genreStats = (favoriteGenres ?? []).map((f) => ({
+  //   name: f?.value ?? "Unknown",
+  //   count: f?.count ?? 0,
+  // }));
 
   const sortedMovies = [...(recentMovies ?? [])].sort((a, b) =>
     sortBy === "release_date"
@@ -52,7 +52,7 @@ export default function Dashboard() {
         <div className="pl-2 text-lg font-semibold">Recommendations</div>
         <Recomendation />
 
-        <div className="mt-8">
+        {/* <div className="mt-8">
           <h2 className="text-xl font-semibold mb-4">Your Favorite Genres</h2>
           {genreStats.length === 0 ? (
             <p>No data yet — start filtering movies!</p>
@@ -69,7 +69,7 @@ export default function Dashboard() {
               </BarChart>
             </ResponsiveContainer>
           )}
-        </div>
+        </div> */}
 
         <div className="mt-8">
           <h2 className="text-xl font-semibold mb-4">Latest Movies</h2>
