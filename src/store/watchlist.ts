@@ -26,7 +26,6 @@ export const useWatchlistStore = create<WatchlistState>()(
     }),
     {
       name: "watchlist-storage", // key in localStorage
-      getStorage: () => localStorage, // (optional, defaults to localStorage)
     }
   )
 );
