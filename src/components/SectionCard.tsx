@@ -23,7 +23,7 @@ export function SectionCards() {
   >((max, curr) => (curr.count > (max?.count ?? 0) ? curr : max), undefined);
 
   return (
-    <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
+    <div className=" grid grid-cols-4 gap-4 max-sm:gap-1">
       {/* Watchlist Card */}
       <Card className="@container/card">
         <CardHeader>
@@ -34,7 +34,6 @@ export function SectionCards() {
         </CardHeader>
       </Card>
 
-      {/* Favorite Genre Card */}
       <Card className="@container/card">
         <CardHeader>
           <CardDescription>Favourite Genre</CardDescription>

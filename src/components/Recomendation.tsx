@@ -14,12 +14,12 @@ export const Recomendation = () => {
       ) : error ? (
         <Error error={error} />
       ) : (
-        <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-3 @5xl/main:grid-cols-5">
+        <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid gap-4 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs lg:px-6 max-md:grid-cols-3 max-sm:grid-cols-2 grid-cols-5">
           {Object.values(result)
             .flat()
             .map((movie) => (
               <Card key={movie.id}>
-                <img src={baseUrl+movie.poster_path} alt="" />
+                <img src={baseUrl + movie.poster_path} alt="" />
               </Card>
             ))}
         </div>
