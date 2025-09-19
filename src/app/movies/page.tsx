@@ -36,7 +36,7 @@ function MoviesContent() {
   return (
     <div>
       {/* Filters */}
-      <div className="flex gap-4 mb-6">
+      <div className="flex gap-4 max-sm:gap-2 flex-wrap mb-6">
         {/* Genre filter */}
         <Select
           value={filters.genre || "all"}

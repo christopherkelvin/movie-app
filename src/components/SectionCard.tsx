@@ -23,7 +23,7 @@ export function SectionCards() {
   >((max, curr) => (curr.count > (max?.count ?? 0) ? curr : max), undefined);
 
   return (
-    <div className=" grid grid-cols-4 gap-4 max-sm:gap-1">
+    <div className=" grid grid-cols-4 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
       {/* Watchlist Card */}
       <Card className="@container/card">
         <CardHeader>
